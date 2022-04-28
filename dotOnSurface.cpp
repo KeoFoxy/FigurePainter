@@ -1,5 +1,5 @@
 #include "dotOnSurface.h"
-
+/*
 template <typename S>
 dotOnSurface<S>::dotOnSurface()
 {
@@ -18,7 +18,7 @@ void dotOnSurface<S>::setCoordinates(S x, S y)
 template <typename S>
 S dotOnSurface<S>::getCoordinates() const
 {
-    return coordinates_x_y;
+    return coordinates_x_y[0];
 }
 
 template <typename S>
@@ -26,3 +26,4 @@ dotOnSurface<S>::~dotOnSurface()
 {
     
 }
+*/
