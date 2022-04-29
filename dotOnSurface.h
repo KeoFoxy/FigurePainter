@@ -9,8 +9,7 @@
 template <typename S>
 
 class dotOnSurface
-{
-    
+{   
 public:
     dotOnSurface()
     {
@@ -24,16 +23,8 @@ public:
 
 private:
     S coordinates_x_y[2];
-    std::array<S, 2> coords;
 
 public:
-
-    void setCoordinates_2(S x, S y)
-    {
-        this->coords.at(0) = x;
-        this->coords.at(1) = y;
-    }
-
     void setCoordinates(S x, S y)
     {
         this->coordinates_x_y[0] = x;
@@ -43,12 +34,6 @@ public:
     {
         return coordinates_x_y;
     }
-
-    std::array<S, 2> getCoordinates_2() const
-    {
-        return coords;
-    }
-
 };
 
 #endif
