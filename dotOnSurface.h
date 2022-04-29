@@ -39,12 +39,12 @@ public:
         this->coordinates_x_y[0] = x;
         this->coordinates_x_y[1] = y;
     }
-    S getCoordinates()
+    S *getCoordinates()
     {
-        return coordinates_x_y[1];
+        return coordinates_x_y;
     }
 
-    std::array<S, 2> getCoordinates_2()
+    std::array<S, 2> getCoordinates_2() const
     {
         return coords;
     }
