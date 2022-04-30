@@ -37,3 +37,4 @@ void MyPainter::absFigure(AbstractFigure &figure)
 
     painter.end();
 }
+

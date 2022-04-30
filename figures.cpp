@@ -116,7 +116,5 @@ int Circle::getY(const int index)
 void Circle::drawCustomFigure(QPainter& figure)
 {
     Circle circle;
-    //QPolygon poligon;
-    //poligon << QPoint(trial.getX(0), trial.getY(0)) << QPoint(trial.getX(1), trial.getY(1)) << QPoint(trial.getX(3), trial.getY(3));
     figure.drawEllipse(circle.getX(0), circle.getY(0), circle.getX(3), circle.getX(3));
 }

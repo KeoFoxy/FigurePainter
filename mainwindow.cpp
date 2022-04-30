@@ -3,6 +3,7 @@
 
 #include "figures.h"
 #include "mypainter.h"
+#include "abstractfigure.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,7 +15,9 @@ MainWindow::MainWindow(QWidget *parent)
     Circle circle;
     Triangle trial;
 
-    MyPainter::absFigure(rect);
+    //absFigure(rect);
+
+    //MyPainter::absFigure(rect);
    // ptr_figures.push_back(rect);
    // ptr_figures.push_back(circle);
    // ptr_figures.push_back(trial);
@@ -30,6 +33,29 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+/*
+void MainWindow::absFigure(AbstractFigure &figure)
+{
+    QPainter painter;
+
+
+    QPen pen;
+    QColor DeepSkyBlue(115, 230, 255);
+
+
+    pen.setColor(DeepSkyBlue);
+    pen.setStyle(Qt::SolidLine);
+    pen.setWidth(10);
+
+
+    painter.begin(this);
+    painter.setPen(pen);
+
+    figure.drawCustomFigure(painter);
+
+    painter.end();
+}
+*/
 /*
 void MainWindow::drawAbsFigure(std::vector<AbstractFigure> &figure)
 {

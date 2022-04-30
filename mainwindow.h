@@ -22,10 +22,10 @@ public:
     ~MainWindow();
 
    // std::vector<AbstractFigure> ptr_figures;
-
-   // void absFigure(std::vector<AbstractFigure> &figure);
+//public slots:
+    //void absFigure(AbstractFigure &figure);
    // void drawAbsFigure(std::vector<AbstractFigure> &figure);
-   friend void MyPainter::absFigure(AbstractFigure &figure);
+   //friend void MyPainter::absFigure(AbstractFigure &figure);
 
 private:
     Ui::MainWindow *ui;
