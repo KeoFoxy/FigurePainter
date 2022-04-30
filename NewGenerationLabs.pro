@@ -9,11 +9,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    abstractfigure.cpp \
+    figures.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mypainter.cpp
 
 HEADERS += \
-    mainwindow.h
+    abstractfigure.h \
+    figures.h \
+    mainwindow.h \
+    mypainter.h
 
 FORMS += \
     mainwindow.ui
