@@ -15,14 +15,9 @@ MainWindow::MainWindow(QWidget *parent)
     Circle *circle = new Circle;
     Triangle *trial = new Triangle;
 
-
     std::vector<AbstractFigure *> prt_figures = {rect, circle, trial};
 
-    MyPainter a(prt_figures);
-
-
-    //a.GetVector(prt_figures);
-
+    ui->Painter->setFigures(prt_figures);
 }
 
 MainWindow::~MainWindow()
