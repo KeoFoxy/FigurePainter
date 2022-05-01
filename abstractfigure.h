@@ -3,6 +3,7 @@
 
 #include <array>
 #include <list>
+#include <memory>
 #include <QPainter>
 
 class AbstractFigure

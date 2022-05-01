@@ -11,21 +11,17 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    Rectangle rect;
-    Circle circle;
-    Triangle trial;
+    Rectangle *rect = new Rectangle;
+    Circle *circle = new Circle;
+    Triangle *trial = new Triangle;
 
-    //absFigure(rect);
 
-    //MyPainter::absFigure(rect);
-   // ptr_figures.push_back(rect);
-   // ptr_figures.push_back(circle);
-   // ptr_figures.push_back(trial);
+    std::vector<AbstractFigure *> prt_figures = {rect, circle, trial};
 
-    //AbstractFigure a;
+    MyPainter a(prt_figures);
 
-    //a.absFigure(rect);
-   // drawAbsFigure(ptr_figures);
+
+    //a.GetVector(prt_figures);
 
 }
 
@@ -33,38 +29,5 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-/*
-void MainWindow::absFigure(AbstractFigure &figure)
-{
-    QPainter painter;
-
-
-    QPen pen;
-    QColor DeepSkyBlue(115, 230, 255);
-
-
-    pen.setColor(DeepSkyBlue);
-    pen.setStyle(Qt::SolidLine);
-    pen.setWidth(10);
-
-
-    painter.begin(this);
-    painter.setPen(pen);
-
-    figure.drawCustomFigure(painter);
-
-    painter.end();
-}
-*/
-/*
-void MainWindow::drawAbsFigure(std::vector<AbstractFigure> &figure)
-{
-    for(const auto items: figure)
-}
-
-*/
-
-
-
 
 
