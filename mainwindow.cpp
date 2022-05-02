@@ -11,13 +11,24 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    /*
     Rectangle *rect = new Rectangle;
     Circle *circle = new Circle;
     Triangle *trial = new Triangle;
+    */
 
-    std::vector<AbstractFigure *> prt_figures = {rect, circle, trial};
+        std::unique_ptr<Rectangle> rect (new Rectangle);
+        std::unique_ptr<Circle> circle (new Circle);
+        std::unique_ptr<Triangle> trial (new Triangle);
 
-    ui->Painter->setFigures(prt_figures);
+
+        std::vector<std::unique_ptr<AbstractFigure>> prt_figures;
+
+        prt_figures.push_back(std::move(rect));
+       // prt_figures.push_back(std::move(circle));
+       // prt_figures.push_back(std::move(trial));
+
+        ui->Painter->setFigures(std::move(prt_figures));
 }
 
 MainWindow::~MainWindow()
