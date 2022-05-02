@@ -21,16 +21,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-   // std::vector<AbstractFigure> ptr_figures;
-//public slots:
-    //void absFigure(AbstractFigure &figure);
-   // void drawAbsFigure(std::vector<AbstractFigure> &figure);
-   //friend void MyPainter::absFigure(AbstractFigure &figure);
+    std::vector<AbstractFigure *> ptr_figures;
+
 
 private:
     Ui::MainWindow *ui;
 
-//protected:
-    //void paintEvent(QPaintEvent*) override;
 };
 #endif // MAINWINDOW_H

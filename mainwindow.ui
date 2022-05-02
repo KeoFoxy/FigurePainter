@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="MyPainter" name="widget_2" native="true"/>
+       <widget class="MyPainter" name="Painter" native="true"/>
       </item>
      </layout>
     </item>

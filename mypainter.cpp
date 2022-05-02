@@ -8,13 +8,10 @@ MyPainter::MyPainter(QWidget *parent)
 
 void MyPainter::paintEvent(QPaintEvent *)
 {
-    Rectangle rect;
-    Circle circle;
-    Triangle trial;
-
-    absFigure(rect);
-    absFigure(trial);
-    absFigure(circle);
+    for(auto items: ptr_figures)
+    {
+        absFigure(*items);
+    }
 }
 
 void MyPainter::absFigure(AbstractFigure &figure)
@@ -37,4 +34,11 @@ void MyPainter::absFigure(AbstractFigure &figure)
 
     painter.end();
 }
+
+std::vector<AbstractFigure *> MyPainter::setFigures(std::vector<AbstractFigure *> _ptr_figures)
+{
+    ptr_figures = _ptr_figures;
+    return ptr_figures;
+}
+
 

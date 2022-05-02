@@ -11,10 +11,14 @@ class MyPainter : public QWidget
 {
     Q_OBJECT
 public:
+    std::vector<AbstractFigure *> ptr_figures;
+
     explicit MyPainter(QWidget *parent = nullptr);
 
     void absFigure(AbstractFigure& figure);
     void drawAbsFigure(AbstractFigure& figure);
+
+    std::vector<AbstractFigure *> setFigures(std::vector<AbstractFigure *> _ptr_figures);
 
 protected:
     void paintEvent(QPaintEvent*) override;
