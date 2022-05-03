@@ -17,9 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
     Triangle *trial = new Triangle;
     */
 
-        std::unique_ptr<Rectangle> rect (new Rectangle);
-        std::unique_ptr<Circle> circle (new Circle);
-        std::unique_ptr<Triangle> trial (new Triangle);
+        std::unique_ptr<AbstractFigure> rect (new Rectangle);
+        std::unique_ptr<AbstractFigure> circle (new Circle);
+        std::unique_ptr<AbstractFigure> trial (new Triangle);
 
 
         std::vector<std::unique_ptr<AbstractFigure>> prt_figures;
