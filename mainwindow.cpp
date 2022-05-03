@@ -25,8 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
         std::vector<std::unique_ptr<AbstractFigure>> prt_figures;
 
         prt_figures.push_back(std::move(rect));
-       // prt_figures.push_back(std::move(circle));
-       // prt_figures.push_back(std::move(trial));
+        prt_figures.push_back(std::move(circle));
+        prt_figures.push_back(std::move(trial));
 
         ui->Painter->setFigures(std::move(prt_figures));
 }

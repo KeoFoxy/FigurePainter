@@ -8,13 +8,13 @@ MyPainter::MyPainter(QWidget *parent)
 
 void MyPainter::paintEvent(QPaintEvent *)
 {
-    for(auto &items: ptr_figures)
+    for(auto &item: ptr_figures)
         {
-            absFigure(std::move(items));
+            absFigure(item);
         }
 }
 
-void MyPainter::absFigure(std::unique_ptr<AbstractFigure> figure)
+void MyPainter::absFigure(const std::unique_ptr<AbstractFigure> &figure)
 {
     QPainter painter;
 
@@ -35,7 +35,7 @@ void MyPainter::absFigure(std::unique_ptr<AbstractFigure> figure)
     painter.end();
 }
 
-void MyPainter::setFigures(std::vector<std::unique_ptr<AbstractFigure>> _ptr_figures)
+void MyPainter::setFigures(std::vector<std::unique_ptr<AbstractFigure>> &&_ptr_figures)
 {
     ptr_figures = std::move(_ptr_figures);
 }
