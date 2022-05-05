@@ -11,8 +11,8 @@ template <typename S>
 class dotOnSurface
 {   
 public:
-    dotOnSurface(){};
-    ~dotOnSurface(){};
+    dotOnSurface() = default;
+    //~dotOnSurface(){};
 
     dotOnSurface(S x, S y)
     {
@@ -22,8 +22,9 @@ public:
 
 
 private:
-    S coordinates_x_y[2];
-    S x, y;
+   // S coordinates_x_y[2];
+    S x = 0;
+    S y = 0;
 
 public:
     dotOnSurface operator -(dotOnSurface<S> &other)
@@ -60,6 +61,7 @@ public:
         return coordinates_x_y;
     }
     */
+   
     S getX()
     {
         return x;
@@ -68,6 +70,7 @@ public:
     {
         return y;
     }
+    
 };
 
 #endif

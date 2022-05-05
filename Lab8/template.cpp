@@ -3,7 +3,7 @@
 
 template<typename T>
 
-T avgValue(std::vector<T> numbers)
+T avgValue(const std::vector<T> &numbers)
 {
     T avgResult = 0;
 
