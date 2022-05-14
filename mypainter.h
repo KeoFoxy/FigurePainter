@@ -11,17 +11,25 @@ class MyPainter : public QWidget
 {
     Q_OBJECT
 public:
-    std::vector<AbstractFigure *> ptr_figures;
+    std::vector<std::unique_ptr<AbstractFigure>> ptr_figures;
 
     explicit MyPainter(QWidget *parent = nullptr);
 
-    void absFigure(AbstractFigure& figure);
-    void drawAbsFigure(AbstractFigure& figure);
+    void absFigure(const std::unique_ptr<AbstractFigure> &figure);
+    //void drawAbsFigure(AbstractFigure& figure);
 
-    std::vector<AbstractFigure *> setFigures(std::vector<AbstractFigure *> _ptr_figures);
+    void setFigures(std::vector<std::unique_ptr<AbstractFigure>> &&_ptr_figures);
 
 protected:
     void paintEvent(QPaintEvent*) override;
+
+public:
+  //  MyPainter(const MyPainter&) = delete;
+   // MyPainter& operator=(const MyPainter&) =delete;
+   // MyPainter(MyPainter &&_ptr_figures)
+    //{
+        //this->ptr_figures = std::move(_ptr_figures.ptr_figures);
+    //}
 
 signals:
 
