@@ -11,29 +11,53 @@ template <typename S>
 class dotOnSurface
 {   
 public:
-    dotOnSurface()
-    {
+    dotOnSurface() = default;
 
+    dotOnSurface(S x, S y)
+    {
+        this->x = x;
+        this->y = y;
     }
 
-    ~dotOnSurface()
-    {
-        
-    }
 
 private:
-    S coordinates_x_y[2];
+    S x = 0;
+    S y = 0;
 
 public:
-    void setCoordinates(S x, S y)
+    dotOnSurface operator -(dotOnSurface<S> &other)
     {
-        this->coordinates_x_y[0] = x;
-        this->coordinates_x_y[1] = y;
+        dotOnSurface<S> _default(0, 0);
+        _default.x = this->x - other.x;
+        _default.y = this->y - other.y;
+        return _default;
     }
-    S *getCoordinates()
+
+       dotOnSurface operator +(dotOnSurface<S> &other)
     {
-        return coordinates_x_y;
+        dotOnSurface<S> _default(0, 0);
+        _default.x = this->x + other.x;
+        _default.y = this->y + other.y;
+        return _default;
     }
+
+       dotOnSurface operator /(const int div)
+    {
+        dotOnSurface def_d;
+        def_d.x = this->x / div;
+        def_d.y = this->y / div;
+        return def_d;
+    }
+   
+    S getX()
+    {
+        return x;
+    }
+    S getY()
+    {
+        return y;
+    }
+    
 };
 
 #endif
