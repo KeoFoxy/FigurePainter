@@ -12,7 +12,6 @@ class dotOnSurface
 {   
 public:
     dotOnSurface() = default;
-    //~dotOnSurface(){};
 
     dotOnSurface(S x, S y)
     {
@@ -22,7 +21,6 @@ public:
 
 
 private:
-   // S coordinates_x_y[2];
     S x = 0;
     S y = 0;
 
@@ -50,17 +48,6 @@ public:
         def_d.y = this->y / div;
         return def_d;
     }
-    /*
-    void setCoordinates(S x, S y)
-    {
-        this->coordinates_x_y[0] = x;
-        this->coordinates_x_y[1] = y;
-    }
-    S *getCoordinates()
-    {
-        return coordinates_x_y;
-    }
-    */
    
     S getX()
     {
