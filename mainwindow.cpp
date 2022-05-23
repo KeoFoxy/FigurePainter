@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         std::unique_ptr<AbstractFigure> rect (new Rectangle({QPoint(200, 800), QPoint(100, 650)}));
         std::unique_ptr<AbstractFigure> circle (new Circle(QPoint(800, 600), 250));
-        std::unique_ptr<AbstractFigure> trial (new Triangle({ QPoint(100, 300), QPoint(400, 800), QPoint(400, 450) }));
+        std::unique_ptr<AbstractFigure> trial (new Triangle({ QPoint(150, 90), QPoint(150, 150), QPoint(100, 115) }));
 
 
         std::vector<std::unique_ptr<AbstractFigure>> prt_figures;
