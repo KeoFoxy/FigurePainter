@@ -11,16 +11,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-        std::unique_ptr<AbstractFigure> rect (new Rectangle(100, 200, 300, 400));
-        std::unique_ptr<AbstractFigure> circle (new Circle(600, 600, 200, 200));
-        std::unique_ptr<AbstractFigure> trial (new Triangle(100,200, 140, 304, 670, 360));
+        std::unique_ptr<AbstractFigure> rect (new Rectangle({QPoint(200, 800), QPoint(100, 650)}));
+        std::unique_ptr<AbstractFigure> circle (new Circle(QPoint(800, 600), 250));
+        std::unique_ptr<AbstractFigure> trial (new Triangle({ QPoint(100, 300), QPoint(400, 800), QPoint(400, 450) }));
 
 
         std::vector<std::unique_ptr<AbstractFigure>> prt_figures;
 
         prt_figures.push_back(std::move(rect));
         prt_figures.push_back(std::move(circle));
-        prt_figures.push_back(std::move(ear_1));
+        prt_figures.push_back(std::move(trial));
+
+        ui->Painter->setMouseTracking(true);
 
         ui->Painter->setFigures(std::move(prt_figures));
 }
@@ -30,11 +32,3 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
-//DRAW KITTEN!!!!!!!!
-//DRAW KITTEN!!!!!!!!
-//DRAW KITTEN!!!!!!!!
-//DRAW KITTEN!!!!!!!!
-//DRAW KITTEN!!!!!!!!
-//DRAW KITTEN!!!!!!!!

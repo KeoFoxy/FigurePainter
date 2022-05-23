@@ -3,69 +3,68 @@
 
 #include <list>
 #include <array>
+#include <QMouseEvent>
+#include <QToolTip>
+#include <QString>
+#include <math.h>
 #include "abstractfigure.h"
 
 class Rectangle: public AbstractFigure
 {
 private:
-    //int x[4], y[4]; //Coordinates x y for rectangle
+    std::array<QPoint, 2> xyCoords;
 
-    std::array<int, 2> x;
-    std::array<int, 2> y;
-
-    //std::list<int> x_k = {100, 200, 300, 400};
-    //std::list<int> y_k = {100, 200, 300, 600};
+    QString Description = "Rectangle";
 
 public:
     Rectangle();
-    Rectangle(int x1, int y1, int x2, int y2);
+    Rectangle(const std::array<QPoint, 2>& _xyCoords);
     ~Rectangle();
 
-    virtual int getX(const int index) override;
-    virtual int getY(const int index) override;
-
     virtual void drawCustomFigure(QPainter& figure) override;
+    virtual void figureDescription(QPoint&) override;
+
+    virtual bool checkInside(const QPoint&) override;
 };
-
-
+////////////////////////////////////////////////////////////////////////////////
+/// ************************************************************************ ///
+////////////////////////////////////////////////////////////////////////////////
 class Triangle: public AbstractFigure
 {
 private:
-    std::array<int, 3> x;
-    std::array<int, 3> y;
+    std::array<QPoint, 3> xyCoords;
 
-   // std::list<int> x_k = {300, 500, 600};
-   // std::list<int> y_k = {300, 400, 300};
+    QString Description = "Triangle";
 
 public:
     Triangle();
-    Triangle(int x1, int y1, int x2, int y2, int x3, int y3);
+    Triangle(const std::array<QPoint, 3>& _xyCoords);
     ~Triangle();
 
-    virtual int getX(const int index) override;
-    virtual int getY(const int index) override;
-
     virtual void drawCustomFigure(QPainter& figure) override;
+    virtual void figureDescription(QPoint&) override;
+
+    virtual bool checkInside(const QPoint&) override;
 };
-
-
+////////////////////////////////////////////////////////////////////////////////
+/// ************************************************************************ ///
+////////////////////////////////////////////////////////////////////////////////
 class Circle: public AbstractFigure
 {
 private:
-    std::array<int, 2> x;
-    std::array<int, 2> y;
+    QPoint center;
+    int radius;
 
-  //  std::list<int> x_k = {100, 200, 300, 400};
-  //  std::list<int> y_k = {100, 200, 300, 600};
+    QString Description = "Circle";
 
 public:
     Circle();
-    Circle(int x_center, int y_center, int x_r, int y_r);
+    Circle(const QPoint& _centerPoint, const int _radius);
     ~Circle();
 
-    virtual int getX(const int index) override;
-    virtual int getY(const int index) override;
-
     virtual void drawCustomFigure(QPainter& figure) override;
+    virtual void figureDescription(QPoint&) override;
+
+    virtual bool checkInside(const QPoint&) override;
 };
 #endif // FIGURES_H

@@ -5,113 +5,113 @@ Rectangle::Rectangle()
 
 }
 
-Rectangle::Rectangle(int x1, int y1, int x2, int y2)
+Rectangle::Rectangle(const std::array<QPoint, 2>& _xyCoords)
 {
-    this->x[0] = x1;
-    this->y[0] = y1;
-    this->x[1] = x2;
-    this->y[1] = y2;
+    this->xyCoords = _xyCoords;
 }
 
-/*
- * Rectangle::Rectangle(int x1, int y1, int x2, int y2)
+void Rectangle::figureDescription(QPoint& point)
 {
-
-    int i = 0;
-    int j = 0;
-    for(auto items: x_k)
-    {
-        x[i] = items;
-        i++;
-    }
-    for(auto items: y_k)
-    {
-        y[j] = items;
-        j++;
-    }
-
-
-
-
-
+    QToolTip::showText(point, Description);
 }
- */
+
+bool Rectangle::checkInside(const QPoint& mousePoint)
+{
+    if(mousePoint.y() <= xyCoords[0].y() && mousePoint.y() >= xyCoords[1].y() && mousePoint.x() <= xyCoords[0].x() && mousePoint.x() >= xyCoords[1].x())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 Rectangle::~Rectangle()
 {
 
 }
 
-
-int Rectangle::getX(const int index)
-{
-    return x[index];
-}
-
-int Rectangle::getY(const int index)
-{
-    return y[index];
-}
-
 void Rectangle::drawCustomFigure(QPainter& figure)
 {
-    Rectangle rect;
-    //figure.drawRect(rect.getX(0), rect.getY(0), rect.getX(1), rect.getY(1));
-    figure.drawRect(x[0], y[0], x[1], y[1]);
+    QPolygon rect;
+    rect << xyCoords[0] << QPoint(xyCoords[0].x(), xyCoords[1].y()) << xyCoords[1] << QPoint(xyCoords[1].x(), xyCoords[0].y());
+    figure.drawPolygon(rect);
 }
-//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// ************************************************************************ ///
+////////////////////////////////////////////////////////////////////////////////
 Triangle::Triangle()
 {
 
 }
 
-Triangle::Triangle(int x1, int y1, int x2, int y2, int x3, int y3)
+Triangle::Triangle(const std::array<QPoint, 3>& _xyCoords)
 {
-    this->x[0] = x1;
-    this->y[0] = y1;
-    this->x[1] = x2;
-    this->y[1] = y2;
-    this->y[2] = x3;
-    this->y[2] = y3;
+    this->xyCoords = _xyCoords;
 }
 
+void Triangle::figureDescription(QPoint& point)
+{
+    QToolTip::showText(point, Description);
+}
+
+bool Triangle::checkInside(const QPoint& mousePoint)
+{
+    int p1 = (xyCoords[0].x()-mousePoint.x())*(xyCoords[1].y()-xyCoords[0].y())-(xyCoords[1].x()-xyCoords[0].x())*(xyCoords[0].y()-mousePoint.y());
+    int p2 = (xyCoords[1].x()-mousePoint.x())*(xyCoords[2].y()-xyCoords[1].y())-(xyCoords[2].x()-xyCoords[1].x())*(xyCoords[1].y()-mousePoint.y());
+    int p3 = (xyCoords[2].x()-mousePoint.x())*(xyCoords[0].y()-xyCoords[2].y())-(xyCoords[0].x()-xyCoords[2].x())*(xyCoords[2].y()-mousePoint.y());
+
+    if(p1*p2 > 0 && p1*p3 > 0 && p2*p3 > 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 Triangle::~Triangle()
 {
 
 }
 
-
-int Triangle::getX(const int index)
-{
-    return x[index];
-}
-
-int Triangle::getY(const int index)
-{
-    return y[index];
-}
-
 void Triangle::drawCustomFigure(QPainter& figure)
-{
-    Triangle trial;
+{  
     QPolygon poligon;
-    poligon << QPoint(x[0], y[0]) << QPoint(x[0], y[1]) << QPoint(x[1], y[2]);
+     poligon << xyCoords[0] << xyCoords[1] << xyCoords[2];
     figure.drawPolygon(poligon);
 }
-//////////////////////////////////////////////////////////////////////////////////
-Circle::Circle(int x_center, int y_center, int x_r, int y_r)
-{
-    this->x[0] = x_center;
-    this->y[0] = y_center;
-    this->x[1] = x_r;
-    this->y[1] = y_r;
-}
-
-
+////////////////////////////////////////////////////////////////////////////////
+/// ************************************************************************ ///
+////////////////////////////////////////////////////////////////////////////////
 Circle::Circle()
 {
 
+}
+
+Circle::Circle(const QPoint& _centerPoint, const int _radius)
+{
+    this->center = _centerPoint;
+    this->radius = _radius;
+}
+
+void Circle::figureDescription(QPoint& point)
+{
+    QToolTip::showText(point, Description);
+}
+
+bool Circle::checkInside(const QPoint& mousePoint)
+{
+    if(pow(mousePoint.y() - center.y(), 2) + pow(mousePoint.x() - (center.x()), 2) < pow(radius, 2))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 Circle::~Circle()
@@ -119,20 +119,7 @@ Circle::~Circle()
 
 }
 
-
-int Circle::getX(const int index)
-{
-    return x[index];
-}
-
-int Circle::getY(const int index)
-{
-    return y[index];
-}
-
 void Circle::drawCustomFigure(QPainter& figure)
 {
-    Circle circle;
-    QPoint center {x[0], y[0]};
-    figure.drawEllipse(center, x[1], y[1]);
+    figure.drawEllipse(center, radius, radius);
 }

@@ -8,31 +8,36 @@ MyPainter::MyPainter(QWidget *parent)
 
 void MyPainter::paintEvent(QPaintEvent *)
 {
-    for(auto &item: ptr_figures)
-        {
-            absFigure(item);
-        }
-}
-
-void MyPainter::absFigure(const std::unique_ptr<AbstractFigure> &figure)
-{
-    QPainter painter;
-
+    QPainter painter(this);
     QPen pen;
-    QColor DeepSkyBlue(115, 230, 255);
+    QColor SoulSkyBlue(198, 226, 255);
 
-
-    pen.setColor(DeepSkyBlue);
+    pen.setColor(SoulSkyBlue);
     pen.setStyle(Qt::SolidLine);
     pen.setWidth(10);
 
-
-    painter.begin(this);
     painter.setPen(pen);
+    painter.setBrush(QBrush(SoulSkyBlue));
 
-    figure->drawCustomFigure(painter);
+    for(auto &item: ptr_figures)
+        {
+            item->drawCustomFigure(painter);
+        }
 
-    painter.end();
+    QColor Lilac(225,196,255);
+    pen.setColor(Lilac);
+    pen.setStyle(Qt::SolidLine);
+    pen.setWidth(10);
+
+    painter.setBrush(QBrush(Lilac));
+
+    for(auto &item: ptr_figures)
+    {
+        if(item->checkInside(mousePosition))
+        {
+            item->drawCustomFigure(painter);
+        }
+    }
 }
 
 void MyPainter::setFigures(std::vector<std::unique_ptr<AbstractFigure>> &&_ptr_figures)
@@ -40,4 +45,21 @@ void MyPainter::setFigures(std::vector<std::unique_ptr<AbstractFigure>> &&_ptr_f
     ptr_figures = std::move(_ptr_figures);
 }
 
+void MyPainter::mouseMoveEvent(QMouseEvent * event)
+{
+    mousePosition = event->pos();
+    update();
+}
 
+void MyPainter::mousePressEvent(QMouseEvent *)
+{
+    for(auto& item : ptr_figures)
+    {
+        if(item->checkInside(mousePosition))
+        {
+            item->figureDescription(mousePosition);
+        }
+    }
+
+    repaint();
+}
