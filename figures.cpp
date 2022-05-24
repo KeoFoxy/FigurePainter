@@ -58,9 +58,15 @@ void Triangle::figureDescription(QPoint& point)
 
 bool Triangle::checkInside(const QPoint& mousePoint)
 {
-    int p1 = (xyCoords[0].x()-mousePoint.x())*(xyCoords[1].y()-xyCoords[0].y())-(xyCoords[1].x()-xyCoords[0].x())*(xyCoords[0].y()-mousePoint.y());
-    int p2 = (xyCoords[1].x()-mousePoint.x())*(xyCoords[2].y()-xyCoords[1].y())-(xyCoords[2].x()-xyCoords[1].x())*(xyCoords[1].y()-mousePoint.y());
-    int p3 = (xyCoords[2].x()-mousePoint.x())*(xyCoords[0].y()-xyCoords[2].y())-(xyCoords[0].x()-xyCoords[2].x())*(xyCoords[2].y()-mousePoint.y());
+    auto trialInside = [mousePoint](QPoint p1, QPoint p2)
+    {
+        int p = (p1.x() - mousePoint.x())*(p2.y() - p1.y())-(p2.x() - p1.y())*(p1.y()-mousePoint.y());
+        return p;
+    };
+
+    int p1 = trialInside(xyCoords[0], xyCoords[1]);
+    int p2 = trialInside(xyCoords[1], xyCoords[2]);
+    int p3 = trialInside(xyCoords[2], xyCoords[0]);
 
     if(p1*p2 > 0 && p1*p3 > 0 && p2*p3 > 0)
     {
