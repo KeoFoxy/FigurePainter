@@ -22,9 +22,10 @@ public:
     ~Rectangle();
 
     virtual void drawCustomFigure(QPainter& figure) override;
-    virtual void figureDescription(QPoint&) override;
+    virtual QString figureDescription() override;
 
     virtual bool checkInside(const QPoint&) override;
+    virtual void SetXYCoordinates(const QPoint&) override;
 };
 ////////////////////////////////////////////////////////////////////////////////
 /// ************************************************************************ ///
@@ -42,9 +43,10 @@ public:
     ~Triangle();
 
     virtual void drawCustomFigure(QPainter& figure) override;
-    virtual void figureDescription(QPoint&) override;
+    virtual QString figureDescription() override;
 
     virtual bool checkInside(const QPoint&) override;
+    virtual void SetXYCoordinates(const QPoint&) override;
 };
 ////////////////////////////////////////////////////////////////////////////////
 /// ************************************************************************ ///
@@ -63,8 +65,9 @@ public:
     ~Circle();
 
     virtual void drawCustomFigure(QPainter& figure) override;
-    virtual void figureDescription(QPoint&) override;
+    virtual QString figureDescription() override;
 
     virtual bool checkInside(const QPoint&) override;
+    virtual void SetXYCoordinates(const QPoint&) override;
 };
 #endif // FIGURES_H

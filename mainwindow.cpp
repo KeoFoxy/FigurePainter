@@ -22,9 +22,11 @@ MainWindow::MainWindow(QWidget *parent)
         prt_figures.push_back(std::move(circle));
         prt_figures.push_back(std::move(trial));
 
-        ui->Painter->setMouseTracking(true);
+        //ui->Painter->setMouseTracking(true);
 
         ui->Painter->setFigures(std::move(prt_figures));
+
+        ui->retranslateUi(this);
 }
 
 MainWindow::~MainWindow()

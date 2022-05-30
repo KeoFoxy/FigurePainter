@@ -10,9 +10,9 @@ Rectangle::Rectangle(const std::array<QPoint, 2>& _xyCoords)
     this->xyCoords = _xyCoords;
 }
 
-void Rectangle::figureDescription(QPoint& point)
+QString Rectangle::figureDescription()
 {
-    QToolTip::showText(point, Description);
+    return "Rectangle";
 }
 
 bool Rectangle::checkInside(const QPoint& mousePoint)
@@ -38,6 +38,19 @@ void Rectangle::drawCustomFigure(QPainter& figure)
     rect << xyCoords[0] << QPoint(xyCoords[0].x(), xyCoords[1].y()) << xyCoords[1] << QPoint(xyCoords[1].x(), xyCoords[0].y());
     figure.drawPolygon(rect);
 }
+
+void Rectangle::SetXYCoordinates(const QPoint& point)
+{
+    int ax = std::abs(xyCoords[0].x() - xyCoords[1].x());
+    int ay = std::abs(xyCoords[0].y() - xyCoords[1].y());
+
+    xyCoords[0].rx() = (point.x() + ax/2);
+    xyCoords[1].rx() = (point.x() + ax/2);
+
+    xyCoords[0].ry() = (point.y() + ay/2);
+    xyCoords[1].ry() = (point.y() + ay/2);
+
+}
 ////////////////////////////////////////////////////////////////////////////////
 /// ************************************************************************ ///
 ////////////////////////////////////////////////////////////////////////////////
@@ -51,9 +64,9 @@ Triangle::Triangle(const std::array<QPoint, 3>& _xyCoords)
     this->xyCoords = _xyCoords;
 }
 
-void Triangle::figureDescription(QPoint& point)
+QString Triangle::figureDescription()
 {
-    QToolTip::showText(point, Description);
+    return "Triangle";
 }
 
 bool Triangle::checkInside(const QPoint& mousePoint)
@@ -89,6 +102,19 @@ void Triangle::drawCustomFigure(QPainter& figure)
      poligon << xyCoords[0] << xyCoords[1] << xyCoords[2];
     figure.drawPolygon(poligon);
 }
+
+void Triangle::SetXYCoordinates(const QPoint& point)
+{
+    QPoint sumPoints = xyCoords[0] + xyCoords[1] + xyCoords[2];
+    QPoint center = QPoint(sumPoints.x()/3, sumPoints.y()/3);
+
+    QPoint dot = center - point;
+
+    xyCoords[0] = xyCoords[0] - dot;
+    xyCoords[1] = xyCoords[1] - dot;
+    xyCoords[2] = xyCoords[2] - dot;
+
+}
 ////////////////////////////////////////////////////////////////////////////////
 /// ************************************************************************ ///
 ////////////////////////////////////////////////////////////////////////////////
@@ -103,9 +129,9 @@ Circle::Circle(const QPoint& _centerPoint, const int _radius)
     this->radius = _radius;
 }
 
-void Circle::figureDescription(QPoint& point)
+QString Circle::figureDescription()
 {
-    QToolTip::showText(point, Description);
+    return "Circle";
 }
 
 bool Circle::checkInside(const QPoint& mousePoint)
@@ -128,4 +154,9 @@ Circle::~Circle()
 void Circle::drawCustomFigure(QPainter& figure)
 {
     figure.drawEllipse(center, radius, radius);
+}
+
+void Circle::SetXYCoordinates(const QPoint& point)
+{
+    center = point;
 }

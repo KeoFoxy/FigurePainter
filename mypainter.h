@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPainter>
 #include <QColor>
+#include <QMenu>
+#include <QGraphicsSceneMouseEvent>
 
 #include "figures.h"
 
@@ -24,7 +26,10 @@ protected:
     void mouseMoveEvent(QMouseEvent*) override;
     void mousePressEvent(QMouseEvent*) override;
 
+    size_t hoverFigureIndex = 0;
 
+protected slots:
+    void deleteFigure();
 signals:
 
 };
