@@ -45,10 +45,10 @@ void Rectangle::SetXYCoordinates(const QPoint& point)
     int ay = std::abs(xyCoords[0].y() - xyCoords[1].y());
 
     xyCoords[0].rx() = (point.x() + ax/2);
-    xyCoords[1].rx() = (point.x() + ax/2);
+    xyCoords[1].rx() = (point.x() - ax/2);
 
     xyCoords[0].ry() = (point.y() + ay/2);
-    xyCoords[1].ry() = (point.y() + ay/2);
+    xyCoords[1].ry() = (point.y() - ay/2);
 
 }
 ////////////////////////////////////////////////////////////////////////////////
